@@ -7,6 +7,7 @@ const axios = require("axios");
 function App() {
   const [apiResponse, setApiResponse] = useState();
   const [dishname, setDishname] = useState();
+  const [database, setDatabase] = useState([]);
 
   const callApi = () => {
     fetch("http://localhost:9000/")
@@ -35,13 +36,24 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const getDatabase = async () => {
+    await axios
+      .get("http://localhost:9000/recipes")
+      .then((res) => setDatabase(res.data));
+  };
+
+  const recipes = database.map((recipe) => (
+    <h1 key={recipe._id}>{recipe.dishname}</h1>
+  ));
+
   return (
     <div>
       <p>{apiResponse}</p>
-
       <form onSubmit={(event) => postRecipe(event)}>
         <input onChange={handleDishname} type="text" placeholder="add in" />
       </form>
+      <button onClick={getDatabase}>GET SOME RECIPE</button>
+      {recipes}
     </div>
   );
 }

@@ -20,4 +20,12 @@ router.post("/recipes", async (req, res) => {
   }
 });
 
+router.get("/recipes", async (req, res) => {
+  Recipe.find({})
+    .then((recipes) => res.send(recipes))
+    .catch((e) => {
+      res.status(500).send();
+    });
+});
+
 module.exports = router;
