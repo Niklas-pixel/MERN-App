@@ -4,9 +4,6 @@ const recipeSchema = new mongoose.Schema({
   dishname: {
     type: String,
   },
-  ingredients: {
-    type: String,
-  },
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);

@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter); // "/", tog bort arg
+app.use(indexRouter); // "/", tog bort arg
 app.use("/users", usersRouter);
 app.use(testAPIRouter); // /testAPI, arg borttaget
 // catch 404 and forward to error handler
