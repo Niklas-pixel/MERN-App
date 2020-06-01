@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import CreateUser from "./modul/CreateUser";
 
 const axios = require("axios");
 
@@ -54,6 +55,8 @@ function App() {
       </form>
       <button onClick={getDatabase}>GET SOME RECIPE</button>
       {recipes}
+
+      <CreateUser />
     </div>
   );
 }
