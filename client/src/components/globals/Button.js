@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 function Button({ className, text }) {
   return (
     <div className={className}>
-      <button>{text}</button>
+      <Link to="/signin">
+        <button>{text}</button>
+      </Link>
     </div>
   );
 }

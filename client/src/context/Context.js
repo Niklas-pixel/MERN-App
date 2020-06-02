@@ -3,6 +3,17 @@ const axios = require("axios");
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:9000/users/login", {
+        email: email,
+        password: password,
+      })
+      .then((res) => console.log(res.data))
+      .catch((e) => setError(e));
+  };
+
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -43,6 +54,7 @@ function ContextProvider({ children }) {
         emailInput,
         passwordInput,
         handleCreateUser,
+        handleLogin,
       }}
     >
       {children}

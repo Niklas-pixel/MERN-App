@@ -14,6 +14,7 @@ function CreateUser({ className }) {
 
   return (
     <div className={className}>
+      <h2>Create account</h2>
       <form onSubmit={(e) => handleCreateUser(e)}>
         <input
           className="name"
@@ -41,14 +42,25 @@ function CreateUser({ className }) {
 }
 
 export default styled(CreateUser)`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  form {
+    width: 80%;
+  }
   .password,
   .name,
   .email {
     display: block;
-    width: 10rem;
-
-    @media ${device.laptop} {
-      width: 30rem;
-    }
+    width: 100%;
+    margin: 0 0 1rem 0;
+  }
+  button {
+    width: 100%;
   }
 `;
+
+// @media ${device.laptop} {
+//   width: 30rem;
+// }
