@@ -5,9 +5,9 @@ function RoundButton({ className }) {
   return (
     <div className={className}>
       <button>
-        <div class="ham1"></div>
-        <div class="ham2"></div>
-        <div class="ham3"></div>
+        <div className="ham1"></div>
+        <div className="ham2"></div>
+        <div className="ham3"></div>
       </button>
     </div>
   );

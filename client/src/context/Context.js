@@ -1,23 +1,26 @@
 import React, { useState } from "react";
+
 const axios = require("axios");
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
-  const handleLogin = (e) => {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    axios
+    await axios
       .post("http://localhost:9000/users/login", {
         email: email,
         password: password,
       })
       .then((res) => console.log(res.data))
+      .then(() => setIsLoggedIn(true))
       .catch((e) => setError(e));
   };
-
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [error, setError] = useState();
 
   const nameInput = (e) => {
     setName(e.target.value);
@@ -55,6 +58,7 @@ function ContextProvider({ children }) {
         passwordInput,
         handleCreateUser,
         handleLogin,
+        isLoggedIn,
       }}
     >
       {children}
