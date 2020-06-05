@@ -2,9 +2,7 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { Context } from "../context/Context";
 const axios = require("axios");
-{
-  test;
-}
+
 function CreateUser({ className }) {
   const {
     name,
