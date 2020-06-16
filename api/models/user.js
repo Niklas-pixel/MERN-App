@@ -79,6 +79,12 @@ userSchema.statics.findByCredentials = async (email, password) => {
   return user;
 };
 
+userSchema.virtual("myRecipes", {
+  ref: "Recipe",
+  localField: "_id",
+  foreignField: "owner",
+});
+
 // Hash the plain text password before saving // THIS IS MIDDLEWArE, PRE() EXEC
 // BEFORE WE SAVE PASSWORD
 userSchema.pre("save", async function (next) {

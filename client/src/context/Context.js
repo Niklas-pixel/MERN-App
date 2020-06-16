@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const axios = require("axios");
 const Context = React.createContext();
@@ -9,6 +10,9 @@ function ContextProvider({ children }) {
   const [password, setPassword] = useState();
   const [error, setError] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Upload image
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [loaded, setLoaded] = useState();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,9 +21,14 @@ function ContextProvider({ children }) {
         email: email,
         password: password,
       })
-      .then((res) => console.log(res.data))
-      .then(() => setIsLoggedIn(true))
-      .catch((e) => setError(e));
+      .then(() => {
+        setIsLoggedIn(true);
+      })
+
+      .catch((err) => {
+        console.error(err);
+        alert("Error logging in, please try again");
+      });
   };
 
   const nameInput = (e) => {
@@ -46,6 +55,25 @@ function ContextProvider({ children }) {
       .catch((e) => setError(e));
   };
 
+  // Upload image
+
+  const onChangeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+    setLoaded(0);
+  };
+
+  const onClickHandler = (event) => {
+    event.preventDefault();
+    const data = new FormData();
+    data.append("file", selectedFile);
+    axios
+      .post("http://localhost:9000/recipe/upload/image", data)
+      .then((res) => {
+        console.log(res.statusText);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Context.Provider
       value={{
@@ -59,6 +87,8 @@ function ContextProvider({ children }) {
         handleCreateUser,
         handleLogin,
         isLoggedIn,
+        onClickHandler,
+        onChangeHandler,
       }}
     >
       {children}

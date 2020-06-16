@@ -30,4 +30,9 @@ function App() {
   );
 }
 
+// {isLoggedIn ? history.push("/platform") : <Redirect to="/signin" />}
+/* index.js:1 Warning: Cannot update during an existing state
+transition (such as within `render`). Render methods should be a pure
+function of props and state. */
+
 export default App;

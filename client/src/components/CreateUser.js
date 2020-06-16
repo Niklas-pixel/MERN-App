@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Context } from "../context/Context";
-import { device } from "../utils/utils";
 
 function CreateUser({ className }) {
   const {

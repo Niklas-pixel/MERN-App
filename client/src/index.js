@@ -7,13 +7,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ContextProvider>
-      <Router>
-        <App />
-      </Router>
-    </ContextProvider>
-  </React.StrictMode>,
+  <ContextProvider>
+    <Router>
+      <App />
+    </Router>
+  </ContextProvider>,
   document.getElementById("root")
 );
 

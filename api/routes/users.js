@@ -11,7 +11,7 @@ router.post("/users", async (req, res) => {
 
     await user.save();
 
-    res.status(201).send({ user, token });
+    res.cookie("token", token, { httpOnly: true }).sendStatus(200);
   } catch (e) {
     res.status(400).send(e);
     console.log(e);
@@ -25,8 +25,8 @@ router.post("/users/login", async (req, res) => {
       req.body.email,
       req.body.password
     );
-    const token = user.generateAuthToken();
-    res.send({ user, token });
+    const token = await user.generateAuthToken();
+    res.cookie("token", token, { httpOnly: true }).sendStatus(200);
   } catch (e) {
     res.status(400).send();
   }

@@ -1,7 +1,12 @@
 import React from "react";
+import Upload from "../components/Upload";
 
 function Platform() {
-  return <div>Hello user!</div>;
+  return (
+    <div>
+      <Upload />
+    </div>
+  );
 }
 
 export default Platform;
